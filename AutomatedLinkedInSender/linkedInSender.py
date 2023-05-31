@@ -11,6 +11,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 load_dotenv()
 account_name = os.getenv["ACCOUNT_NAME"]
 account_password = os.getenv["ACCOUNT_PASSWORD"]
+account_phone = os.getenv["ACCOUNT_PHONE"]
 
 # Explicit Wait
 def document_initialised(driver):
@@ -26,7 +27,8 @@ sign_in_button = driver.find_element_by_link_text("Sign in")
 sign_in_button.click()
 
 WebDriverWait(driver, timeout=10).until(document_initialised)
-el = driver.find_element(By.TAG_NAME, "p")
+el_button = driver.find_element(By.TAG_NAME, "button")
+assert el_button.text == "Button found!"
 # driver.implicitly_wait(0.5)
 
 email_field = driver.find_element_by_id("username")
@@ -37,7 +39,19 @@ password_field.send_keys(Keys.ENTER)
 
 WebDriverWait(driver, timeout=10).until(document_initialised)
 el = driver.find_element(By.TAG_NAME, "p")
+assert el.text == "Hello from JavaScript!, paragraph found"
 
 # Application Button
 apply_button = driver.find_element_by_css_selector(".jobs-s-apply button")
 apply_button.click()
+
+# Phone number entry
+WebDriverWait(driver, timeout=10).until(document_initialised)
+el_form = driver.find_element(By.TAG_NAME, "form")
+phone = driver.find_element_by_class_name("fb-single-line-text__input")
+if phone.text == "":
+    phone.send_keys(account_phone)
+
+#Submit the application
+submit_button = driver.find_element_by_css_selector("footer button")
+submit_button.click()
