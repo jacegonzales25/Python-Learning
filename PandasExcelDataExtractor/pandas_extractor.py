@@ -28,3 +28,6 @@ converted_timestamp = pd.to_datetime(timestamp_column)
 filtered_timestamp_column = data[converted_timestamp.dt.year == 2023]
 # print(filtered_timestamp_column)
 
+# Filter companies having Computer Science or Information Technology
+filtered_programs = data[programs.str.contains("Computer Science|Information Technology")]
+print(filtered_programs)
