@@ -3,7 +3,7 @@ import pandas as pd
 file = "TIP_partners.xlsx"
 data = pd.read_excel(file)
 
-print(data.columns)
+# print(data.columns)
 
 # Setup necessary data spots
 # Specific columns
@@ -20,3 +20,11 @@ categories = data["Categories/Specializations of Company"]
 programs = data["Programs/Course Requested"]
 no_of_interns = data["No. of Intern/OJT Student Needed"]
 allowance = data["Do you provide Allowance or Stipend?"]
+
+# Timestamp into query()
+converted_timestamp = pd.to_datetime(timestamp_column)
+# print(converted_timestamp)
+
+filtered_timestamp_column = data[converted_timestamp.dt.year == 2023]
+# print(filtered_timestamp_column)
+
