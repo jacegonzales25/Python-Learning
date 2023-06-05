@@ -35,7 +35,8 @@ filtered_programs = data[programs.str.contains("Computer Science|Information Tec
 # print(filtered_programs)
 
 cs_it_data = year_2023_data[year_2023_data['Programs/Course Requested'].str.contains('Computer Science|Information Technology')]
-
+# If containing all CS programs from Year 2017 to recent
+# cs_it_data = data[data["Programs/Course Requested"].str.contains('Computer Science|Information Technology')]
 
 # Adding the dataframe with filter
 cs_it_data["Email"] = data["Email Address"]
@@ -49,5 +50,5 @@ cs_it_data["Categories/Specializations of Company"] = data["Categories/Specializ
 cs_it_data["No. of Intern/OJT Student Needed"] = data["No. of Intern/OJT Student Needed"]
 cs_it_data["Do you provide Allowance or Stipend?"] = data["Do you provide Allowance or Stipend?"]
 
-cs_it_data.to_excel('output.xlsx', index=False)
+cs_it_data.to_excel('outputall.xlsx', index=False)
 
